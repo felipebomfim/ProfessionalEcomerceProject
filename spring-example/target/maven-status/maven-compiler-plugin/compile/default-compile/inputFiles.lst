@@ -1,0 +1,8 @@
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/loose/coupling/LooseCouplingExample.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/loose/coupling/UserDataProvider.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/loose/coupling/UserDatabaseProvider.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/loose/coupling/UserManager.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/loose/coupling/WebServiceDataProvider.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/tight/coupling/TightCouplingExample.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/tight/coupling/UserDataBase.java
+/home/felipe/Dev/_pessoal/udemy/ProfessionalEcomerceProject/spring-example/src/main/java/com/tight/coupling/UserManager.java
