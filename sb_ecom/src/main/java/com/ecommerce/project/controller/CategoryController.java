@@ -61,8 +61,6 @@ public class CategoryController {
             return new ResponseEntity<>("Category with category id: "+categoryId+" updated", HttpStatus.ACCEPTED);
         } catch (ResponseStatusException e){
             return new ResponseEntity<>(e.getReason(), e.getStatusCode());
-        }finally{
-            System.out.println("Hello world");
         }
     }
     
