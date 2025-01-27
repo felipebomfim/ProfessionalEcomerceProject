@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.ecommerce.project.model.Category;
@@ -42,6 +43,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Category updateCategory(Category category, Long categoryId) {
         Optional<Category> optionalCategory = categories.stream()
             .filter(c->c.getCategoryId().equals(categoryId))
