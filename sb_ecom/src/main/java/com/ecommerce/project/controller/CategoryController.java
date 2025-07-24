@@ -1,5 +1,6 @@
 package com.ecommerce.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -26,11 +27,11 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+    private List<Category> categories = new ArrayList<>();
 
     @GetMapping("/public/categories")
-    public ResponseEntity<List<Category>> getAllCategories(){
-        List<Category> categories = categoryService.getAllCategories();
-        return new ResponseEntity<>(categories, HttpStatus.OK);
+    public List<Category> getAllCategories(){
+        return categories;
     }
 
     @PostMapping("/admin/category")
