@@ -11,16 +11,18 @@ Content-Type: application/json
 
 {
     "categoryId":1,
-    "categoryName":"Nova Categoria"
+    "categoryName":"Nova Categoria 2",
+    "whatever":"whatever"
 }
 
 ### Deleta uma categoria com o id definido
-DELETE {{base_url}}/admin/categories/2
+DELETE {{base_url}}/admin/categories/1
 
 ### Atualiza uma Category
-PUT  {{base_url}}/admin/categories/3
+PUT  {{base_url}}/admin/categories/2
 Content-Type: application/json
 
 {
-    "categoryName":"Nome Atualizado"
+    "categoryId": 21,
+    "categoryName":"Nome Novo de novo"
 }

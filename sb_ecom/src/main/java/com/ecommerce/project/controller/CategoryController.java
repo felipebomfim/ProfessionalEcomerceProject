@@ -1,7 +1,5 @@
 package com.ecommerce.project.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,9 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.project.model.Category;
+import com.ecommerce.project.payload.reponse.CategoryResponseDTO;
+import com.ecommerce.project.payload.reponse.GetAllCategoriesResponse;
+import com.ecommerce.project.payload.request.CategoryRequest;
 import com.ecommerce.project.service.CategoryService;
 
 import jakarta.validation.Valid;
@@ -30,13 +31,14 @@ public class CategoryController {
 
     
     @GetMapping("/public/categories")
-    public ResponseEntity<List<Category>> getAllCategories(){
-        List<Category> categories = categoryService.getAllCategories();
-        return ResponseEntity.status(HttpStatus.OK).body(categories);
+    @ResponseStatus(HttpStatus.OK)
+    public GetAllCategoriesResponse getAllCategories(){
+        GetAllCategoriesResponse response = categoryService.getAllCategories();
+        return response;
     }
 
     @PostMapping("/admin/categories")
-    public ResponseEntity<String> createCategory(@RequestBody @Valid Category category) {
+    public ResponseEntity<String> createCategory(@RequestBody @Valid CategoryRequest category) {
         categoryService.createCategory(category);
         return new ResponseEntity<>("Category created successfully.", HttpStatus.ACCEPTED);        
     }
@@ -50,12 +52,13 @@ public class CategoryController {
     }
 
     @PutMapping("/admin/categories/{categoryId}")
-    public ResponseEntity<String> updateCategory(
-        @RequestBody Category category, 
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public CategoryResponseDTO updateCategory(
+        @RequestBody @Valid CategoryRequest category, 
         @PathVariable Long categoryId
     ) {
-        Category updatedCategory = categoryService.updateCategory(category, categoryId);
-        return new ResponseEntity<>("Category with category id: "+updatedCategory.getCategoryId()+" updated", HttpStatus.ACCEPTED);
+        CategoryResponseDTO response = categoryService.updateCategory(category, categoryId);
+        return response;
     }
     
 }
