@@ -1,6 +1,5 @@
 package com.ecommerce.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -27,29 +26,26 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-    private List<Category> categories = new ArrayList<>();
 
+    
     @GetMapping("/public/categories")
-    public List<Category> getAllCategories(){
-        return categories;
+    public ResponseEntity<List<Category>> getAllCategories(){
+        List<Category> categories = categoryService.getAllCategories();
+        return ResponseEntity.status(HttpStatus.OK).body(categories);
     }
 
-    @PostMapping("/admin/category")
+    @PostMapping("/admin/categories")
     public ResponseEntity<String> createCategory(@RequestBody Category category) {
-        categoryService.createCategory(category);        
-        return new ResponseEntity<>("Category added successfully",HttpStatus.CREATED);
+        categoryService.createCategory(category);
+        return new ResponseEntity<>("Category created successfully.", HttpStatus.ACCEPTED);        
     }
 
     @DeleteMapping("/admin/categories/{categoryId}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long categoryId){
-        try{
-            String status = categoryService.deleteCategory(categoryId);
-            // return ResponseEntity.ok(status);
-            // return ResponseEntity.status(HttpStatus.NOT_FOUND).body(status);
-            return new ResponseEntity<>(status, HttpStatus.OK);
-        } catch (ResponseStatusException e){
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
-        }
+        String status = categoryService.deleteCategory(categoryId);
+        if (status == "Category not found")
+            return new ResponseEntity<>(status, HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(status);
     }
 
     @PutMapping("/admin/categories/{categoryId}")
@@ -58,8 +54,8 @@ public class CategoryController {
         @PathVariable Long categoryId
     ) {
         try{
-            Category savedCategory = categoryService.updateCategory(category, categoryId);
-            return new ResponseEntity<>("Category with category id: "+categoryId+" updated", HttpStatus.ACCEPTED);
+            Category updatedCategory = categoryService.updateCategory(category, categoryId);
+            return new ResponseEntity<>("Category with category id: "+updatedCategory.getCategoryId()+" updated", HttpStatus.ACCEPTED);
         } catch (ResponseStatusException e){
             return new ResponseEntity<>(e.getReason(), e.getStatusCode());
         }
