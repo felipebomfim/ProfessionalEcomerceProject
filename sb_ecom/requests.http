@@ -2,3 +2,23 @@
 
 ### Recupera todas as categorias
 {{base_url}}/public/categories
+
+### Cria uma nova Category
+POST  {{base_url}}/public/categories
+Content-Type: application/json
+
+{
+    "categoryId":1,
+    "categoryName":"Nova Categoria"
+}
+
+### Deleta uma categoria com o id definido
+DELETE {{base_url}}/admin/categories/2
+
+### Atualiza uma Category
+PUT  {{base_url}}/public/categories/4
+Content-Type: application/json
+
+{
+    "categoryName":"Nome Atualizado"
+}
