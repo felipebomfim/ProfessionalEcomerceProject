@@ -38,13 +38,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void createCategory(CategoryRequest categoryRequest) {
+    public CategoryResponseDTO createCategory(CategoryRequest categoryRequest) {
         Category categoryToBeSaved = new Category();
         categoryToBeSaved.setCategoryName(categoryRequest.getCategoryName());
 
         verifyIfCategoryNameAlreadyExists(categoryRequest.getCategoryName());
         
-        categoryRepository.save(categoryToBeSaved);
+        Category savedCategory = categoryRepository.save(categoryToBeSaved);
+        CategoryResponseDTO dto = modelMapper.map(savedCategory, CategoryResponseDTO.class);
+        return dto;
     }
 
     private void verifyIfCategoryNameAlreadyExists(String categoryName) {
@@ -55,14 +57,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public String deleteCategory(Long categoryId) {
+    public CategoryResponseDTO deleteCategory(Long categoryId) {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
 
         if (categoryOptional.isEmpty())
             throw new ResourceNotFoundException("Category", "categoryId", categoryId);
-
+        
         categoryRepository.delete(categoryOptional.get());
-        return "Category with categoryId: " + categoryId + " deleted successfully!!";
+        
+        Category deletedCategory = categoryOptional.get();
+        CategoryResponseDTO dto = modelMapper.map(deletedCategory, CategoryResponseDTO.class);
+        return dto;
     }
 
     @Override

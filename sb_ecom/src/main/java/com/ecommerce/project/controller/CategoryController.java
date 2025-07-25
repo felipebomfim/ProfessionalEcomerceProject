@@ -1,7 +1,6 @@
 package com.ecommerce.project.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,17 +37,17 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories")
-    public ResponseEntity<String> createCategory(@RequestBody @Valid CategoryRequest category) {
-        categoryService.createCategory(category);
-        return new ResponseEntity<>("Category created successfully.", HttpStatus.ACCEPTED);        
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public CategoryResponseDTO createCategory(@RequestBody @Valid CategoryRequest category) {
+        CategoryResponseDTO response = categoryService.createCategory(category);
+        return response;        
     }
 
     @DeleteMapping("/admin/categories/{categoryId}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long categoryId){
-        String status = categoryService.deleteCategory(categoryId);
-        if (status == "Category not found")
-            return new ResponseEntity<>(status, HttpStatus.NOT_FOUND);
-        return ResponseEntity.ok(status);
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryResponseDTO deleteCategory(@PathVariable Long categoryId){
+        CategoryResponseDTO response = categoryService.deleteCategory(categoryId);
+        return response;
     }
 
     @PutMapping("/admin/categories/{categoryId}")
