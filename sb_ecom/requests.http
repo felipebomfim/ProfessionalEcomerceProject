@@ -1,3 +1,5 @@
+# Utilizar REST Client Extension no VS Code
+
 @base_url=http://localhost:8080/api
 
 ### Recupera todas as categorias
