@@ -4,7 +4,7 @@
 {{base_url}}/public/categories
 
 ### Cria uma nova Category
-POST  {{base_url}}/public/categories
+POST  {{base_url}}/admin/categories
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 DELETE {{base_url}}/admin/categories/2
 
 ### Atualiza uma Category
-PUT  {{base_url}}/public/categories/4
+PUT  {{base_url}}/admin/categories/3
 Content-Type: application/json
 
 {
