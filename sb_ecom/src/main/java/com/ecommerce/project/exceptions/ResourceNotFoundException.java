@@ -7,6 +7,7 @@ public class ResourceNotFoundException extends RuntimeException {
     Long fieldId;
 
     public ResourceNotFoundException() {
+        super();
     }
 
     public ResourceNotFoundException(String resourceName, String field, String fieldName) {
