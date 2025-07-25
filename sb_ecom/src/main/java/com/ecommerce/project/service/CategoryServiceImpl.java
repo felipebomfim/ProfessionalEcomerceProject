@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.ecommerce.project.exceptions.ResourceNotFoundException;
 import com.ecommerce.project.model.Category;
 import com.ecommerce.project.repositories.CategoryRepository;
 
@@ -37,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
 
         if (categoryOptional.isEmpty())
-            return "Category not found";
+            throw new ResourceNotFoundException("Category", "categoryId", categoryId);
 
         categoryRepository.delete(categoryOptional.get());
         return "Category with categoryId: " + categoryId + " deleted successfully!!";
@@ -54,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
             Category updatedCategory = categoryRepository.save(existingCategory);
             return updatedCategory;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+            throw new ResourceNotFoundException("Category", "categoryId", categoryId);
         }
     }
 
