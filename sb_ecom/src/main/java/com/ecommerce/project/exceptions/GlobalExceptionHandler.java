@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class MyGlobalExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ResponseBody
 	@ExceptionHandler(Exception.class)
@@ -38,6 +38,12 @@ public class MyGlobalExceptionHandler {
     public String handleResourceNotFound(ResourceNotFoundException e){
         String response = e.getMessage();
         return response;
+    }
+
+    @ExceptionHandler(APIException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleAPIException(APIException e){
+        return e.getMessage();
     }
 
 }
