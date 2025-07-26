@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.ecommerce.project.exceptions.APIException;
 import com.ecommerce.project.exceptions.ResourceNotFoundException;
 import com.ecommerce.project.model.Category;
-import com.ecommerce.project.payload.reponse.CategoryResponseDTO;
-import com.ecommerce.project.payload.reponse.GetAllCategoriesResponse;
 import com.ecommerce.project.payload.request.CategoryRequest;
+import com.ecommerce.project.payload.response.CategoryResponseDTO;
+import com.ecommerce.project.payload.response.GetAllCategoriesResponse;
 import com.ecommerce.project.repositories.CategoryRepository;
 
 @Service

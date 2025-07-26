@@ -1,4 +1,4 @@
-package com.ecommerce.project.payload.reponse;
+package com.ecommerce.project.payload.response;
 
 import java.util.List;
 

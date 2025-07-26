@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.project.payload.reponse.CategoryResponseDTO;
-import com.ecommerce.project.payload.reponse.GetAllCategoriesResponse;
 import com.ecommerce.project.payload.request.CategoryRequest;
+import com.ecommerce.project.payload.response.CategoryResponseDTO;
+import com.ecommerce.project.payload.response.GetAllCategoriesResponse;
 import com.ecommerce.project.service.CategoryService;
 
 import jakarta.validation.Valid;
