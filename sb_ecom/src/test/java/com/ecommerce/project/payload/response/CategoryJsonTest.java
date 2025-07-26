@@ -20,11 +20,24 @@ public class CategoryJsonTest {
             "My Category"
         );
         assertThat(json.write(categoryResponseDTO)).isStrictlyEqualToJson("category.json");
-        assertThat(json.write(categoryResponseDTO)).hasJsonPathNumberValue("@.categoryId");
-        assertThat(json.write(categoryResponseDTO)).extractingJsonPathNumberValue("@.categoryId")
-                .isEqualTo(21);
-        assertThat(json.write(categoryResponseDTO)).hasJsonPathStringValue("categoryName");
-        assertThat(json.write(categoryResponseDTO)).extractingJsonPathStringValue("@.categoryName")
-                .isEqualTo("My Category");
+        // assertThat(json.write(categoryResponseDTO)).hasJsonPathNumberValue("@.categoryId");
+        // assertThat(json.write(categoryResponseDTO)).extractingJsonPathNumberValue("@.categoryId")
+        //         .isEqualTo(21);
+        // assertThat(json.write(categoryResponseDTO)).hasJsonPathStringValue("categoryName");
+        // assertThat(json.write(categoryResponseDTO)).extractingJsonPathStringValue("@.categoryName")
+        //         .isEqualTo("My Category");
+    }
+
+    @Test
+    void categoryResponseDeserializationTest() throws IOException {
+        String expectedResponse = """
+                {
+                    "categoryId": 21,
+                    "categoryName": "My Category"
+                }
+                """;
+        assertThat(json.parse(expectedResponse)).isEqualTo(new CategoryResponseDTO(21l, "My Category"));
+        // assertThat(json.parseObject(expectedResponse).getCategoryId()).isEqualTo(21l);
+        // assertThat(json.parseObject(expectedResponse).getCategoryName()).isEqualTo("My Category");
     }
 }
