@@ -44,7 +44,7 @@ public class CategoryControllerTest {
         assertThat(cashCardCount).isEqualTo(4);
 
         JSONArray ids = documentContext.read("$.content..categoryId");
-        assertThat(ids).containsExactlyInAnyOrder(1, 2, 3, 4);
+        assertThat(ids).containsExactlyInAnyOrder(21, 22, 23, 24);
 
         JSONArray amounts = documentContext.read("$.content..categoryName");
         assertThat(amounts).containsExactlyInAnyOrder(
